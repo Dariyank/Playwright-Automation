@@ -1,5 +1,5 @@
 const { test, expect } = require('@playwright/test');
-const LoginPage=require('../objects/page-objects/loginObjects');
+const LoginPage=require('../objects/pageObjects/loginObjects.js');
 const Common=require('../utils/commonFunctions.js');
 
 let common;
