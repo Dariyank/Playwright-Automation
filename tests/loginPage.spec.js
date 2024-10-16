@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
     await page.goto('https://www.saucedemo.com/');
     login = new LoginPage(page);
     common = new Common(page);
-  });
+});
 
 test('Login valid user', async () => {
     await login.loginValidAccount();

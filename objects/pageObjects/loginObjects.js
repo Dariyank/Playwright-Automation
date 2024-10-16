@@ -1,4 +1,3 @@
-import { expect } from "@playwright/test";
 import data from "../data/userData.json";
 const Common=require('../../utils/commonFunctions.js');
 
