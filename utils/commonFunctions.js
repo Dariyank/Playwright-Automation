@@ -43,6 +43,10 @@ class Common{
         await expect(testObject).toBeVisible();
     }
 
+    async getObjectText(testObject){
+        return testObject.textContent();
+    }
+
     /**
      * Check if the element is hidden
      * @param {*} testObject is the selector of the element

@@ -22,7 +22,7 @@ The list of dependencies is:
 To run the script of the demo web page saucedemo, execute the following
 
 ```bash
-npm run test:login
+npm run test:all
 ```
 
 When the UI system shows up, click on the "Play" icon in the left "Tests" side menu.
@@ -30,7 +30,6 @@ When the UI system shows up, click on the "Play" icon in the left "Tests" side m
 ## Naming Conventions
 
 - Use `lowerCameCase` for variables, properties, object files and folder names.
-- Use `kebab-case` for test file name.
 - Use prefix like `is`, `are`, `has` for bool variables.
 - Use self explanatory names for variables, E.g `let username`.
 - Always start a function with a verb and the entity being affected by it, E.g `async checkObjectText`.
