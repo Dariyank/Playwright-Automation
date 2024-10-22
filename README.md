@@ -19,6 +19,8 @@ The list of dependencies is:
 
 ### Running
 
+**Using UI**
+
 To run the script of the demo web page saucedemo, execute the following
 
 ```bash
@@ -26,6 +28,16 @@ npm run test:all
 ```
 
 When the UI system shows up, click on the "Play" icon in the left "Tests" side menu.
+
+**Headless**
+
+To run the script headless, execute the following
+
+```bash
+npm run test:headless
+```
+
+The result of the tests will be shown on the IDE terminal
 
 ## Naming Conventions
 
