@@ -1,6 +1,6 @@
 const { test } = require("@playwright/test");
 const Common = require("../utils/commonFunctions.js")
-const Cart = require("../objects/pageObjects/cartObjects.js");
+import Cart from "../objects/pageObjects/cartObjects.js";
 const LoginPage = require("../objects/pageObjects/loginObjects.js");
 const Gallery = require("../objects/pageObjects/galleryObjects.js");
 const Product = require("../objects/pageObjects/pdpObjects.js");

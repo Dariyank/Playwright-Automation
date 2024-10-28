@@ -1,10 +1,9 @@
 const Common = require("../../utils/commonFunctions.js");
 const Gallery = require("./galleryObjects.js");
 
-class Cart {
+export default class Cart extends Common{
     constructor(page){
-        this.page = page,
-        this.common = new Common(this.page); 
+        super(page);
         this.gallery = new Gallery(this.page);
         this.cartTitle = page.locator(".header_secondary_container span");
         this.QtyLabel = page.locator(".cart_quantity_label");
@@ -18,29 +17,27 @@ class Cart {
     }
 
     async returnToGallery(){
-        await this.common.clickElement(this.continueShoppingBtn);
-        await this.common.checkIsVisible(this.gallery.galleryTitle);
+        await super.clickElement(this.continueShoppingBtn);
+        await super.checkIsVisible(this.gallery.galleryTitle);
     }
 
     async removeItem(item){
-        await this.common.checkIsVisible(this.itemRemoveBtn(item));
-        await this.common.clickElement(this.itemRemoveBtn(item));
+        await super.checkIsVisible(this.itemRemoveBtn(item));
+        await super.clickElement(this.itemRemoveBtn(item));
     }
 
     async removeItemFromGroup(name, item){
-        await this.common.checkIsVisible(this.itemTitleName(name));
-        await this.common.clickElement(this.itemRemoveBtn(item));
-        await this.common.checkNotExist(this.itemTitleName(name));
+        await super.checkIsVisible(this.itemTitleName(name));
+        await super.clickElement(this.itemRemoveBtn(item));
+        await super.checkNotExist(this.itemTitleName(name));
     }
 
     async navigateToItemPDP(item){
-        await this.common.clickElement(this.itemTitle(item));
+        await super.clickElement(this.itemTitle(item));
     }
 
     async navigateToCheckout(){
-        await this.common.clickElement(this.checkoutBtn);
+        await super.clickElement(this.checkoutBtn);
     }
 
 }
-
-module.exports=Cart;

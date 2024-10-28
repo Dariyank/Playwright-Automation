@@ -1,10 +1,9 @@
 import data from "../data/userData.json";
 const Common=require('../../utils/commonFunctions.js');
 
-class LoginPage{
+class LoginPage extends Common{
     constructor(page){
-        this.page = page,
-        this.common = new Common(page); 
+        super(page);
         this.usernameField = page.locator("#user-name");
         this.passwordFile = page.locator("#password");
         this.loginBtn = page.locator("#login-button");
@@ -16,25 +15,25 @@ class LoginPage{
     }
 
     async loginValidAccount(){
-        await this.common.setValueInput(this.usernameField, data.validUser);
-        await this.common.setValueInput(this.passwordFile, data.password);
-        await this.common.clickElement(this.loginBtn);
+        await super.setValueInput(this.usernameField, data.validUser);
+        await super.setValueInput(this.passwordFile, data.password);
+        await super.clickElement(this.loginBtn);
     }
 
     async loginLockedAccount(){
-        await this.common.setValueInput(this.usernameField, data.lockedUser);
-        await this.common.setValueInput(this.passwordFile, data.password);
-        await this.common.clickElement(this.loginBtn);
-        await this.common.checkIsVisible(this.usernameErrorIcon);
-        await this.common.checkIsVisible(this.passwordErrorIcon);
+        await super.setValueInput(this.usernameField, data.lockedUser);
+        await super.setValueInput(this.passwordFile, data.password);
+        await super.clickElement(this.loginBtn);
+        await super.checkIsVisible(this.usernameErrorIcon);
+        await super.checkIsVisible(this.passwordErrorIcon);
     }
 
     async loginInvalidAccount(){
-        await this.common.setValueInput(this.usernameField, data.validUser);
-        await this.common.setValueInput(this.passwordFile, data.wrongPass);
-        await this.common.clickElement(this.loginBtn);
-        await this.common.checkIsVisible(this.usernameErrorIcon);
-        await this.common.checkIsVisible(this.passwordErrorIcon);
+        await super.setValueInput(this.usernameField, data.validUser);
+        await super.setValueInput(this.passwordFile, data.wrongPass);
+        await super.clickElement(this.loginBtn);
+        await super.checkIsVisible(this.usernameErrorIcon);
+        await super.checkIsVisible(this.passwordErrorIcon);
     }
 }
 

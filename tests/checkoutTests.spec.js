@@ -2,7 +2,7 @@ const { test } = require('@playwright/test');
 const LoginPage=require('../objects/pageObjects/loginObjects.js');
 const Common=require('../utils/commonFunctions.js');
 const Gallery=require('../objects/pageObjects/galleryObjects.js');
-const Cart=require('../objects/pageObjects/cartObjects.js');
+import Cart from '../objects/pageObjects/cartObjects.js';
 const Checkout = require('../objects/pageObjects/checkoutObjects.js');
 
 let common,gallery,login,cart,checkout;

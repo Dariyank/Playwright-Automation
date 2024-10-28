@@ -1,9 +1,8 @@
 const Common = require("../../utils/commonFunctions.js");
 
-class Product{
+class Product extends Common{
     constructor(page){
-        this.page = page,
-        this.common = new Common(this.page); 
+        super(page);
         this.returnBtn = page.locator("#back-to-products");
         this.itemTitle = page.locator(".inventory_details_name");
         this.itemPrice = page.locator(".inventory_details_price");
@@ -12,24 +11,24 @@ class Product{
     }
 
     async checkItemInfo(name, price){
-        await this.common.checkObjectText(this.itemTitle, name);
-        await this.common.checkObjectText(this.itemPrice, price);
+        await super.checkObjectText(this.itemTitle, name);
+        await super.checkObjectText(this.itemPrice, price);
     }
 
     async addItemToCart(){
-        await this.common.checkIsVisible(this.addCartBtn);
-        await this.common.clickElement(this.addCartBtn);
-        await this.common.checkIsVisible(this.removeBtn);
+        await super.checkIsVisible(this.addCartBtn);
+        await super.clickElement(this.addCartBtn);
+        await super.checkIsVisible(this.removeBtn);
     }
 
     async removeItemFromCart(){
         await this.addItemToCart();
-        await this.common.clickElement(this.removeBtn);
-        await this.common.checkIsVisible(this.addCartBtn);
+        await super.clickElement(this.removeBtn);
+        await super.checkIsVisible(this.addCartBtn);
     }
 
     async returnToGallery(){
-        await this.common.clickElement(this.returnBtn);
+        await super.clickElement(this.returnBtn);
     }
 }
 
