@@ -22,7 +22,7 @@ test("Complete your information form in checkout", async () => {
     await gallery.navigateToCart();
     await cart.navigateToCheckout();
     await common.checkObjectText(checkout.checkoutTitle, "Checkout: Your Information");
-    await checkout.fillYourInformation();
+    await checkout.fillUserInformation();
     await common.checkObjectText(checkout.checkoutTitle, "Checkout: Overview");
 });
 
@@ -37,7 +37,7 @@ test("Navigate to checkout Overview", async () => {
     await gallery.navigateToCart();
     await cart.navigateToCheckout();
     await common.checkObjectText(checkout.checkoutTitle, "Checkout: Your Information");
-    await checkout.fillYourInformation();
+    await checkout.fillUserInformation();
     await common.checkObjectText(checkout.checkoutTitle, "Checkout: Overview");
 });
 
@@ -46,7 +46,7 @@ test("Complete Checkout", async () => {
     await gallery.navigateToCart();
     await cart.navigateToCheckout();
     await common.checkObjectText(checkout.checkoutTitle, "Checkout: Your Information");
-    await checkout.fillYourInformation();
+    await checkout.fillUserInformation();
     await common.checkObjectText(checkout.checkoutTitle, "Checkout: Overview");
     let values = await checkout.checkOverviewInfo();
     console.log(await common.getObjectText(checkout.totalAmount))

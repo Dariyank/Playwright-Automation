@@ -21,7 +21,7 @@ class Checkout extends Common{
         this.totalAmount = page.locator(".summary_total_label");
     }
 
-    async fillYourInformation(){
+    async fillUserInformation(){
         let value;
         await super.setValueInput(this.firstNameField, checkoutData.firstName);
         value = await this.firstNameField.getAttribute('value');
@@ -42,8 +42,8 @@ class Checkout extends Common{
         await super.checkObjectText(this.summaryInfo(1), "Free Pony Express Delivery!");
         await super.checkObjectText(this.summaryLabel(2), "Price Total");
         let total = 0, index = 0;
-        let items = await this.itemsInCheckout.count() 
-        while(!(index >= items)){
+        let items = await this.itemsInCheckout.count()
+        while(index < items){
             total = total + await super.getPrice(this.itemPrice(index));
             index++;
         }
