@@ -1,4 +1,5 @@
 const { expect } = require("@playwright/test");
+const exp = require("constants");
 const { default: test } = require("node:test");
 
 class Common{
@@ -17,8 +18,8 @@ class Common{
 
     /**
      * Add value to an input field
-     * @param {*} testObject is the selector of the element
-     * @param {*} text is the text to write
+     * @param {Selector} testObject is the selector of the element
+     * @param {String} text is the text to write
      */
     async setValueInput(testObject, text){
         await testObject.fill(text);
@@ -28,8 +29,8 @@ class Common{
 
     /**
      * Verify text on element
-     * @param {*} testObject is the selector of the element
-     * @param {*} text is the text to evaluate element's text
+     * @param {Selector} testObject is the selector of the element
+     * @param {String} text is the text to evaluate element's text
      */
     async checkObjectText(testObject, text){
         await expect(testObject).toHaveText(text);
@@ -37,22 +38,49 @@ class Common{
 
     /**
      * Check if an element is visible
-     * @param {*} testObject is the selector of the element
+     * @param {Selector} testObject is the selector of the element
      */
     async checkIsVisible(testObject){
         await expect(testObject).toBeVisible();
     }
 
+    /**
+     * 
+     * @param {Selector} testObject is the selector of the element
+     */
+    async checkNotExist(testObject){
+        await expect(testObject).toHaveCount(0);
+    }
+
+    /**
+     * Check if the element is hidden
+     * @param {Selector} testObject is the selector of the element
+     */
     async getObjectText(testObject){
         return testObject.textContent();
     }
 
     /**
      * Check if the element is hidden
-     * @param {*} testObject is the selector of the element
+     * @param {Selector} testObject is the selector of the element
      */
     async checkIsHidden(testObject){
         await expect(testObject).toBeVisible();
+    }
+
+    /**
+     * @param {String} text1 first text to compare
+     * @param {String} text2 second text to compare if they're equal
+     */
+    async checkIsEqual(text1, text2){
+        expect(text1).toEqual(text2);
+    }
+
+    async getPrice(testObject){
+        let text = await this.getObjectText(testObject);
+        text = text.replace("$", "");
+        let number = parseFloat(text);
+        return number;
     }
 
 }

@@ -1,4 +1,4 @@
-const { test, context } = require('@playwright/test');
+const { test } = require('@playwright/test');
 const LoginPage=require('../objects/pageObjects/loginObjects.js');
 const Common=require('../utils/commonFunctions.js');
 const Gallery=require('../objects/pageObjects/galleryObjects.js');
@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
 test('Check gallery elements', async () => {
     let item = 0;
     await common.checkIsVisible(gallery.galleryLogo);
-    await common.checkIsVisible(gallery.secundaryHeader);
+    await common.checkIsVisible(gallery.galleryTitle);
     let totalCount = await gallery.itemContainer.count();
     while(item < totalCount){
         await common.checkIsVisible(gallery.itemTitle(item));
@@ -32,13 +32,13 @@ test('Check gallery elements', async () => {
 });
 
 test("Add item to cart", async () => {
-    await gallery.addItemToCart(0);
+    await gallery.addItemToCart(0, 0);
     await common.checkObjectText(gallery.cartCounter, "1");
 });
 
 test("Remove item from cart", async () => {
-    await gallery.addItemToCart(0);
-    await gallery.addItemToCart(1);
+    await gallery.addItemToCart(0, 0);
+    await gallery.addItemToCart(1, 1);
     await gallery.removeItemToCart(0);
     await common.checkObjectText(gallery.cartCounter, "1");
 

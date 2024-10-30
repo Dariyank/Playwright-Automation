@@ -1,11 +1,12 @@
 const Common=require('../../utils/commonFunctions.js');
+const Product=require("../pageObjects/pdpObjects.js");
 
-class Gallery{
+class Gallery extends Common{
     constructor(page){
-        this.page = page,
-        this.common = new Common(page); 
+        super(page);
+        this.pdp = new Product(page);
         this.galleryLogo = page.locator(".app_logo");
-        this.secundaryHeader = page.locator(".title");
+        this.galleryTitle = page.locator(".title");
         this.itemContainer = page.locator(".inventory_item")
         this.itemTitle = (item) => {return page.locator(".inventory_item_name").nth(item);};
         this.itemPrice = (item) => {return page.locator(".inventory_item_price").nth(item);};
@@ -20,20 +21,29 @@ class Gallery{
         this.linkedinBtn = page.locator(".social_linkedin a");
     }
 
-    async addItemToCart(item){
-        await this.common.checkIsVisible(this.itemAddToCartBtn(item));
-        await this.common.clickElement(this.itemAddToCartBtn(item));
-        await this.common.checkIsVisible(this.itemRemoveBtn(item));
+    async addItemToCart(item, index){
+        await super.checkIsVisible(this.itemAddToCartBtn(item));
+        await super.clickElement(this.itemAddToCartBtn(item));
+        await super.checkIsVisible(this.itemRemoveBtn(index));
     }
 
     async removeItemToCart(item){
-        await this.common.checkIsVisible(this.itemRemoveBtn(item));
-        await this.common.clickElement(this.itemRemoveBtn(item));
-        await this.common.checkIsVisible(this.itemAddToCartBtn(item));
+        await super.checkIsVisible(this.itemRemoveBtn(item));
+        await super.clickElement(this.itemRemoveBtn(item));
+        await super.checkIsVisible(this.itemAddToCartBtn(item));
     }
 
-    async navigateToFacebook(newPage){
-        console.log(newPage.url());
+    async navigateToCart(){
+        await super.checkIsVisible(this.cartIcon);
+        await super.clickElement(this.cartIcon);
+    }
+
+    async navigateToProductDetail(item){
+        await super.checkIsVisible(this.itemTitle(item));
+        let name = await super.getObjectText(this.itemTitle(0));
+        let price = await super.getObjectText(this.itemPrice(0));
+        await super.clickElement(this.itemTitle(0));
+        return {name, price};
     }
 }
 
